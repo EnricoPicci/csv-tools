@@ -1,6 +1,6 @@
 {
     "name": "csv-tools",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "tools to manage csv format",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
