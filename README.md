@@ -1,14 +1,26 @@
 # csv-tools
 
-csv-tools is a node app configured to use Typescript scaffolded using the package `@enrico.piccinin/create-node-ts-app`.
+Provides a set of functions to turn objects to csv records and viceversa.
 
-csv-tools can be published as a package on the public NPM registry.
+Examples of usage can be found in the `*.spec.ts` test files.
 
-Contains a configuration for `eslint` and `prettier`.
+## Installation
 
-Testing is based on the `mocha` and `chai` libraries.
+npm i @enrico.piccinin/csv-tools
 
-In the `src` folder there is a `package-core.ts` file containing a sample of a function which is exported by the package via the `index.ts` file.
+## From csv to objects
+
+There are functions to convert:
+
+-   an array of strings representing csv records to an array of objects
+-   a stream of strings (typically lines coming from a csv file) to a stream of objects
+
+## From objects to csv
+
+There are functions to convert:
+
+-   an array of objects to an array of strings representing csv records
+-   a stream of objects to a stream of strings representing csv records
 
 ## test
 
@@ -16,8 +28,12 @@ Run the tests using the command
 
 `npm run test`
 
-## Publish on NPM registry
+## Miscellanea
 
-To publish on NPM registry the package rune the command
+csv-tools is a node app configured to use Typescript scaffolded using the package `@enrico.piccinin/create-node-ts-app`.
 
-`npm publish`
+csv-tools can be published as a package on the public NPM registry.
+
+Contains a configuration for `eslint` and `prettier`.
+
+Testing is based on the `mocha` and `chai` libraries.
