@@ -11,7 +11,7 @@ export function toCsv(objects: any[]) {
     }
     const header = objects[0];
     csvLines.push(Object.keys(header).join(DEFAUL_CONFIG.CSV_SEP));
-    objects.forEach((obj) => csvLines.push(valuesWithNoCsvSeparator(obj).join(DEFAUL_CONFIG.CSV_SEP)));
+    objects.forEach((obj) => csvLines.push(toCsvRec(obj)));
     return csvLines;
 }
 
@@ -29,7 +29,7 @@ export function toCsvObs() {
                         isFirst = false;
                         subscriber.next(Object.keys(obj).join(DEFAUL_CONFIG.CSV_SEP));
                     }
-                    subscriber.next(valuesWithNoCsvSeparator(obj).join(DEFAUL_CONFIG.CSV_SEP));
+                    subscriber.next(toCsvRec(obj));
                 },
                 error: (err) => subscriber.error(err),
                 complete: () => {
@@ -43,10 +43,16 @@ export function toCsvObs() {
     };
 }
 
+function toCsvRec(obj: any) {
+    const values = valuesWithNoCsvSeparator(obj);
+    const csvRec = values.join(DEFAUL_CONFIG.CSV_SEP);
+    return csvRec;
+}
+
 // valuesWithNoCsvSeparator returns an array of values of the object, with the csv separator replaced by space if present
 // this is to avoid the csv parser to split the value in two columns
-function valuesWithNoCsvSeparator(obj: Record<string, string>) {
+function valuesWithNoCsvSeparator(obj: Record<string, any>) {
     return Object.values(obj).map((value) => {
-        return typeof value === 'string' ? value.replace(DEFAUL_CONFIG.CSV_SEP, ' ') : value;
+        return value.toString().replace(DEFAUL_CONFIG.CSV_SEP, ' ');
     });
 }
