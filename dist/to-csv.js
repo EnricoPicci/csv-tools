@@ -12,7 +12,7 @@ function toCsv(objects) {
     }
     const header = objects[0];
     csvLines.push(Object.keys(header).join(config_1.DEFAUL_CONFIG.CSV_SEP));
-    objects.forEach((obj) => csvLines.push(valuesWithNoCsvSeparator(obj).join(config_1.DEFAUL_CONFIG.CSV_SEP)));
+    objects.forEach((obj) => csvLines.push(toCsvRec(obj)));
     return csvLines;
 }
 exports.toCsv = toCsv;
@@ -30,7 +30,7 @@ function toCsvObs() {
                         isFirst = false;
                         subscriber.next(Object.keys(obj).join(config_1.DEFAUL_CONFIG.CSV_SEP));
                     }
-                    subscriber.next(valuesWithNoCsvSeparator(obj).join(config_1.DEFAUL_CONFIG.CSV_SEP));
+                    subscriber.next(toCsvRec(obj));
                 },
                 error: (err) => subscriber.error(err),
                 complete: () => {
@@ -44,11 +44,16 @@ function toCsvObs() {
     };
 }
 exports.toCsvObs = toCsvObs;
+function toCsvRec(obj) {
+    const values = valuesWithNoCsvSeparator(obj);
+    const csvRec = values.join(config_1.DEFAUL_CONFIG.CSV_SEP);
+    return csvRec;
+}
 // valuesWithNoCsvSeparator returns an array of values of the object, with the csv separator replaced by space if present
 // this is to avoid the csv parser to split the value in two columns
 function valuesWithNoCsvSeparator(obj) {
     return Object.values(obj).map((value) => {
-        return typeof value === 'string' ? value.replace(config_1.DEFAUL_CONFIG.CSV_SEP, ' ') : value;
+        return value.toString().replace(config_1.DEFAUL_CONFIG.CSV_SEP, ' ');
     });
 }
 //# sourceMappingURL=to-csv.js.map
