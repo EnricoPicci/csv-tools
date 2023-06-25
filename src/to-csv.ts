@@ -53,6 +53,7 @@ function toCsvRec(obj: any) {
 // this is to avoid the csv parser to split the value in two columns
 function valuesWithNoCsvSeparator(obj: Record<string, any>) {
     return Object.values(obj).map((value) => {
-        return value.toString().replace(DEFAUL_CONFIG.CSV_SEP, ' ');
+        const _value = value ? value : '';
+        return _value.toString().replace(DEFAUL_CONFIG.CSV_SEP, ' ');
     });
 }
