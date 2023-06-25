@@ -53,7 +53,8 @@ function toCsvRec(obj) {
 // this is to avoid the csv parser to split the value in two columns
 function valuesWithNoCsvSeparator(obj) {
     return Object.values(obj).map((value) => {
-        return value.toString().replace(config_1.DEFAUL_CONFIG.CSV_SEP, ' ');
+        const _value = value ? value : '';
+        return _value.toString().replace(config_1.DEFAUL_CONFIG.CSV_SEP, ' ');
     });
 }
 //# sourceMappingURL=to-csv.js.map

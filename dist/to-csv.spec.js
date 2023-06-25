@@ -24,7 +24,7 @@ describe(`toCsv`, () => {
         (0, chai_1.expect)(linesFromObjects[2]).equal(row_2);
     });
     it(`create, from an array of objects, an array of lines, the first one being the header the other being the rows in comma separated value (csv) format
-    One of the values is an array iof strings`, () => {
+    One of the values is an array of strings`, () => {
         const obj_1 = { col_1: '1', col_2: '2', col_3: ['3', '4'] };
         const obj_2 = { col_1: 'a', col_2: 'b', col_3: ['c', 'd'] };
         const objs = [obj_1, obj_2];
@@ -32,6 +32,24 @@ describe(`toCsv`, () => {
         const header = `col_1${sep}col_2${sep}col_3`;
         const row_1 = `1${sep}2${sep}3 4`;
         const row_2 = `a${sep}b${sep}c d`;
+        const linesFromObjects = (0, to_csv_1.toCsv)(objs);
+        // there are as many lines as objects in the array passed to the toCsv function plus 1 for the header
+        (0, chai_1.expect)(linesFromObjects.length).equal(objs.length + 1);
+        // the first line is the header
+        (0, chai_1.expect)(linesFromObjects[0]).equal(header);
+        // the other lines are the representations of the objects in csv format
+        (0, chai_1.expect)(linesFromObjects[1]).equal(row_1);
+        (0, chai_1.expect)(linesFromObjects[2]).equal(row_2);
+    });
+    it(`create, from an array of objects, an array of lines, the first one being the header the other being the rows in comma separated value (csv) format
+    One of the values is null`, () => {
+        const obj_1 = { col_1: '1', col_2: '2', col_3: ['3', '4'] };
+        const obj_2 = { col_1: 'a', col_2: null, col_3: ['c', 'd'] };
+        const objs = [obj_1, obj_2];
+        const sep = config_1.DEFAUL_CONFIG.CSV_SEP;
+        const header = `col_1${sep}col_2${sep}col_3`;
+        const row_1 = `1${sep}2${sep}3 4`;
+        const row_2 = `a${sep}${sep}c d`;
         const linesFromObjects = (0, to_csv_1.toCsv)(objs);
         // there are as many lines as objects in the array passed to the toCsv function plus 1 for the header
         (0, chai_1.expect)(linesFromObjects.length).equal(objs.length + 1);
