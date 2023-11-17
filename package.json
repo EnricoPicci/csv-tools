@@ -1,6 +1,6 @@
 {
     "name": "@enrico.piccinin/csv-tools",
-    "version": "1.0.13",
+    "version": "1.0.14",
     "description": "tools to manage csv format",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
