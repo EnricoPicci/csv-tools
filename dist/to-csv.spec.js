@@ -25,13 +25,13 @@ describe(`toCsv`, () => {
     });
     it(`create, from an array of objects, an array of lines, the first one being the header the other being the rows in comma separated value (csv) format
     One of the values is an array of strings`, () => {
-        const obj_1 = { col_1: '1', col_2: '2', col_3: ['3', '4'] };
-        const obj_2 = { col_1: 'a', col_2: 'b', col_3: ['c', 'd'] };
+        const obj_1 = { col_1: '1', col_2: '2', col_3: ['3', '4', '5'] };
+        const obj_2 = { col_1: 'a', col_2: 'b', col_3: ['c', 'd', 'e'] };
         const objs = [obj_1, obj_2];
         const sep = config_1.DEFAUL_CONFIG.CSV_SEP;
         const header = `col_1${sep}col_2${sep}col_3`;
-        const row_1 = `1${sep}2${sep}3 4`;
-        const row_2 = `a${sep}b${sep}c d`;
+        const row_1 = `1${sep}2${sep}3 4 5`;
+        const row_2 = `a${sep}b${sep}c d e`;
         const linesFromObjects = (0, to_csv_1.toCsv)(objs);
         // there are as many lines as objects in the array passed to the toCsv function plus 1 for the header
         (0, chai_1.expect)(linesFromObjects.length).equal(objs.length + 1);

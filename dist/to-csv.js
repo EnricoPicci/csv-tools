@@ -54,7 +54,7 @@ function toCsvRec(obj) {
 function valuesWithNoCsvSeparator(obj) {
     return Object.values(obj).map((value) => {
         const _value = value !== null && value !== undefined ? value : '';
-        return _value.toString().replace(config_1.DEFAUL_CONFIG.CSV_SEP, ' ');
+        return _value.toString().replaceAll(config_1.DEFAUL_CONFIG.CSV_SEP, ' ');
     });
 }
 //# sourceMappingURL=to-csv.js.map
