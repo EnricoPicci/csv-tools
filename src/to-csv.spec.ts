@@ -30,14 +30,14 @@ describe(`toCsv`, () => {
     it(`create, from an array of objects, an array of lines, the first one being the header the other being the rows in comma separated value (csv) format
     One of the values is an array of strings`, () => {
         type objType = { col_1: string; col_2: string; col_3: string[] };
-        const obj_1: objType = { col_1: '1', col_2: '2', col_3: ['3', '4'] };
-        const obj_2: objType = { col_1: 'a', col_2: 'b', col_3: ['c', 'd'] };
+        const obj_1: objType = { col_1: '1', col_2: '2', col_3: ['3', '4', '5'] };
+        const obj_2: objType = { col_1: 'a', col_2: 'b', col_3: ['c', 'd', 'e'] };
         const objs = [obj_1, obj_2];
 
         const sep = DEFAUL_CONFIG.CSV_SEP;
         const header = `col_1${sep}col_2${sep}col_3`;
-        const row_1 = `1${sep}2${sep}3 4`;
-        const row_2 = `a${sep}b${sep}c d`;
+        const row_1 = `1${sep}2${sep}3 4 5`;
+        const row_2 = `a${sep}b${sep}c d e`;
 
         const linesFromObjects = toCsv(objs);
 

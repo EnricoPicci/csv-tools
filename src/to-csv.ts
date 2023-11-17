@@ -54,6 +54,6 @@ function toCsvRec(obj: any) {
 function valuesWithNoCsvSeparator(obj: Record<string, any>) {
     return Object.values(obj).map((value) => {
         const _value = value !== null && value !== undefined ? value : '';
-        return _value.toString().replace(DEFAUL_CONFIG.CSV_SEP, ' ');
+        return _value.toString().replaceAll(DEFAUL_CONFIG.CSV_SEP, ' ');
     });
 }
